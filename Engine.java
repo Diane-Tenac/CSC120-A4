@@ -1,40 +1,64 @@
 
 public class Engine {
 
-    private String fuel_type;
-    private double capacity;
-    private double current_level;
+    private FuelType fuelType;
+    private double maxFuel;
+    private double currentFuel;
 
     /* The constructor */
-    public Engine(String fuel_type, double capacity, double current_level) {
-        this.fuel_type = fuel_type;
-        this.capacity = capacity;
-        this.current_level = current_level;
+    public Engine(FuelType fuel_type, double maxFuel, double currentFuel) {
+        this.fuelType = fuel_type;
+        this.maxFuel = maxFuel;
+        this.currentFuel = currentFuel;
     }
 
     /* Accessors */
-    public fuelType getFuelType(String fuel_type) {
-        this.fuel_type = fuelType;
-        return fuelType;
+    public FuelType getFuelType(FuelType fuel_type) {
+        return fuel_type;
     }
 
-    public double getMaxfuel(double capacity) {
-        this.capacity = maxFuel;
+    public void setFuelType(FuelType fuel_type) {
+        this.fuelType = fuelType;
+
+    }
+
+    public double getMaxfuel(double maxFuel) {
+
         return maxFuel;
     }
 
-    public double getCurrentFuel(double current_level) {
-        this.current_level = currrentFuel;
+    public void setMaxfuel(double maxFuel) {
+
+        this.maxFuel = maxFuel;
+    }
+
+    public double getCurrentFuel(double currentFuel) {
         return currentFuel;
+    }
+
+    public void setCurrentFuel(double currentFuel) {
+        this.currentFuel = currentFuel;
     }
 
     /*methods */
     public void refuel() {
+        double currentFuel = maxFuel;
 
     }
 
     public Boolean go() {
+        if (currentFuel > 0) {
+            // use some fuel each time the engine goes
+            currentFuel -= 1.0; // you can adjust how fast fuel burns
+            System.out.println("Engine running... Remaining fuel: " + currentFuel);
+            return true;
+        } else {
+            System.out.println("No fuel left. The engine has stopped.");
+            return false;
+        }
+    }
+        
 
     }
 
-}
+
