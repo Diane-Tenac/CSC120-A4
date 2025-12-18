@@ -3,15 +3,16 @@ import java.util.ArrayList;
 
 public class Train implements TrainRequirements {
     // attributes
-    private Engine engine;
+    private Engine myEngine;
     private ArrayList<Car> cars;
     private int seatsRemaining;
     private int maxCapacity;
+    public int nCars;
 
 
     public Train(FuelType fuelType, double currentFuelLevel, double fuelCapacity, int nCars, int passengerCapacity) {
-        this.engine = new Engine(fuelType, fuelCapacity, currentFuelLevel);
-        cars = new ArrayList<>(nCars);
+        this.myEngine = new Engine(fuelType, fuelCapacity, currentFuelLevel);
+        this.cars = new ArrayList<>(nCars);
         int capacityPerCar = passengerCapacity / nCars;
         for (int i = 0; i < nCars; i++) {
             Car newCar = new Car(capacityPerCar);
@@ -21,11 +22,11 @@ public class Train implements TrainRequirements {
 
     // accessors and manipulators
     public Engine getEngine() {
-        return this.engine;
+        return this.myEngine;
     }
 
     public Car getCar(int i) {
-        return cars.get(i);
+        return this.cars.get(i);
     }
 
   
@@ -38,19 +39,26 @@ public class Train implements TrainRequirements {
 
 
     public int seatsRemaining() {
-        this.seatsRemaining = 0;
-        for (Car car : cars) {
-            this.seatsRemaining += car.seatsRemaining();
+        int seatsRemaining = 0;
+        for (Car car : this.cars) {
+            seatsRemaining += car.seatsRemaining();
         }
-        return this.seatsRemaining;
+        return seatsRemaining;
     }
 
     public void printManifest() {
         System.out.println("Total passengers: ");
-        for (int i = 0; i < this.cars.size(); i++) {
-            System.out.println();
-            System.out.println("* Car " + (i + 1) + " " + "*");
-            cars.get(i).printManifest();
+        for (Car car : cars) {
+            car.printManifest();
         }
+    }
+    public static void main(String[] args) {
+        Train myTrain=new Train(FuelType.ELECTRIC, 100.0,100.0, 8, 5);
+        Car car1=new Car(1);
+        myTrain.cars.add(car1);
+        Passenger p=new Passenger("Mike");
+        car1.addPassenger(p);
+        myTrain.printManifest();
+
     }
 }

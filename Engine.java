@@ -1,64 +1,64 @@
-
-public class Engine {
+public class Engine implements EngineRequirements {
 
     private FuelType fuelType;
     private double maxFuel;
     private double currentFuel;
 
-    /* The constructor */
-    public Engine(FuelType fuel_type, double maxFuel, double currentFuel) {
-        this.fuelType = fuel_type;
+    /* Constructor */
+    public Engine(FuelType fuelType, double maxFuel, double currentFuel) {
+        this.fuelType = fuelType;
         this.maxFuel = maxFuel;
         this.currentFuel = currentFuel;
     }
 
-    /* Accessors */
-    public FuelType getFuelType(FuelType fuel_type) {
-        return fuel_type;
+    /* Accessors - FIXED */
+    public FuelType getFuelType() { 
+        return this.fuelType;  
     }
 
-    public void setFuelType(FuelType fuel_type) {
-        this.fuelType = fuelType;
-
+    public void setFuelType(FuelType fuelType) {
+        this.fuelType = fuelType; 
     }
 
-    public double getMaxfuel(double maxFuel) {
-
-        return maxFuel;
+    public double getMaxFuel() {  
+        return this.maxFuel;  
     }
 
-    public void setMaxfuel(double maxFuel) {
-
+    public void setMaxFuel(double maxFuel) { 
         this.maxFuel = maxFuel;
     }
 
-    public double getCurrentFuel(double currentFuel) {
-        return currentFuel;
+    public double getCurrentFuel() { 
+        return this.currentFuel;  
     }
 
     public void setCurrentFuel(double currentFuel) {
         this.currentFuel = currentFuel;
     }
 
-    /*methods */
+    /* Methods */
     public void refuel() {
-        double currentFuel = maxFuel;
-
+        this.currentFuel = this.maxFuel; 
+        System.out.println("Refueled! Current fuel: " + this.currentFuel);
     }
 
     public Boolean go() {
-        if (currentFuel > 0) {
-            // use some fuel each time the engine goes
-            currentFuel -= 1.0; // you can adjust how fast fuel burns
-            System.out.println("Engine running... Remaining fuel: " + currentFuel);
+        if (this.currentFuel > 0) {
+            this.currentFuel -= 2.0;  
+            System.out.println("Engine running... Remaining fuel: " + this.currentFuel);
             return true;
         } else {
             System.out.println("No fuel left. The engine has stopped.");
             return false;
         }
     }
-        
 
+    // Main method
+    public static void main(String[] args) {
+        Engine myEngine = new Engine(FuelType.ELECTRIC, 100.0, 100.0); 
+        while (myEngine.go()) {
+            System.out.println("Choo choo!");
+        }
+        System.out.println("Out of fuel.");
     }
-
-
+}
