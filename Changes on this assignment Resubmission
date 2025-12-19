@@ -1,0 +1,2 @@
+On this review I have focused more on working on what made me loose points which are some internal conditions in some methods like checking if the car if full or not, checking if the train is empty of full to controll adding and removing of passengers in those cars/train.
+I have also added the javaDocs and some main parts in each class to check if the methos=ds are working.

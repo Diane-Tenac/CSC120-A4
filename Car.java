@@ -5,26 +5,37 @@ public class Car implements CarRequirements {
     int maxCapacity;
     ArrayList<Passenger> passengersOnboard;
 
-    /* Constructor */
+    /* Constructor 
+    * @param maxCapacity
+    */
     public Car(int maxCapacity){
         this.maxCapacity = maxCapacity;
         this.passengersOnboard = new ArrayList<Passenger>(); 
     }
 
-    /* Accessors */
+    /* Accessor to get the capacity
+    * @return maxCapacity
+     */
     public int getCapacity() {
         return this.maxCapacity;
     }
-    
+    /* Manipulator to set the capacity
+    * @param maxCapacity
+     */
     public void setCapacity(int maxCapacity){ 
         this.maxCapacity = maxCapacity;
     }
 
-    /* Methods */
+    /* Method to calculate the remaining seats
+    * @return seatsRemaining=getCapacity() - passengersOnboard.size() 
+    */
     public int seatsRemaining() {
         return getCapacity() - passengersOnboard.size();
     }
-
+    /* Methods to add passengers
+    * @param passeger-object
+    * @return true if passenger is added and false if otherwise
+     */
     public Boolean addPassenger(Passenger p) {
         int remainingSeats = this.seatsRemaining();
         if (remainingSeats > 0) {
@@ -40,7 +51,10 @@ public class Car implements CarRequirements {
             return false;
         }
     }
-
+    /* Methods to remove passengers
+    * @param passeger-object
+    * @return true if passenger is removed and false if otherwise
+     */
     public Boolean removePassenger(Passenger p) {
         if (passengersOnboard.size() > 0) {
             if (passengersOnboard.contains(p)) {
@@ -55,7 +69,8 @@ public class Car implements CarRequirements {
             return false;
         }
     }
-
+    /* Method to print the passengers in the train
+     */
     public void printManifest() {
         if (passengersOnboard.size() > 0) {
             for (int i = 0; i < passengersOnboard.size(); i++) {
